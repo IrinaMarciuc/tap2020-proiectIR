@@ -8,6 +8,7 @@ namespace IMRL.WhatsInMyFridge.Core.Recipes.Base
     {
         public Guid Id;
         public string name { get; protected set; }
+        public string status { get; protected set; }
         public string link { get; protected set; }
     }
 }
