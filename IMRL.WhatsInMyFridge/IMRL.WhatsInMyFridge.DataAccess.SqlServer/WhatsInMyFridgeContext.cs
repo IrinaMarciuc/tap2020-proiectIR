@@ -9,7 +9,7 @@ using System.Text;
 using IMRL.WhatsInMyFridge.Core.Recipes;
 namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer
 {
-    class WhatsInMyFridgeContext: DbContext
+    public class WhatsInMyFridgeContext: DbContext
     {
         private string connectionString;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

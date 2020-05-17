@@ -6,6 +6,7 @@ namespace IMRL.WhatsInMyFridge.Core.Ingredients
 {
     public class Ingredient : IIngredient
     {
+        public Guid Id;
         public string name { get; set; }
     }
 }

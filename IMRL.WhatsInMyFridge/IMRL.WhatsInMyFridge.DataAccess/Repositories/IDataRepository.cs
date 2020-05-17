@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Xml.Serialization;
 
 namespace IMRL.WhatsInMyFridge.DataAccess.Repositories
 {
-      public interface IDataRepository
+    public interface IDataRepository
     {
         IQueryable<TEntity> Query<TEntity>() where TEntity : class, IEntityBase;
 

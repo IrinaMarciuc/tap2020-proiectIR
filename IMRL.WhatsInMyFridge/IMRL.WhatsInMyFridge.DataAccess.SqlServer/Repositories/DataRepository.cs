@@ -9,24 +9,35 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer.Repositories
 {
     public class DataRepository : IDataRepository
     {
-        void IDataRepository.Delete<TEntity>(TEntity entityId)
+        private readonly WhatsInMyFridgeContext dataContext;
+        public DataRepository(WhatsInMyFridgeContext dataContext)
         {
-            throw new NotImplementedException();
+            this.dataContext = dataContext;
+        }
+        IQueryable<TEntity> IDataRepository.Query<TEntity>()
+        {
+            return dataContext.Set<TEntity>();
+        }
+        void IDataRepository.Delete<TEntity>(TEntity entity)
+        {
+            var dbEntity = dataContext.Set<TEntity>()
+                .SingleOrDefault(e => e.Id == entity.Id);
+            if (dbEntity != null)
+            {
+                dataContext.Remove(dbEntity);
+            }
         }
 
         void IDataRepository.Insert<TEntity>(TEntity entity)
         {
-            throw new NotImplementedException();
+            dataContext.Add(entity);
         }
 
-        IQueryable<TEntity> IDataRepository.Query<TEntity>()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         void IDataRepository.Update<TEntity>(TEntity entity)
         {
-            throw new NotImplementedException();
+            dataContext.Update(entity);
         }
     }
 }
