@@ -18,7 +18,11 @@ namespace IMRL.WhatsInMyFridge.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            .ConfigureAppConfiguration(_ => {
+                _.AddJsonFile("appsettings.json");
+                _.AddJsonFile("appsettings.local.json",optional:true);
+                })    
+            .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
