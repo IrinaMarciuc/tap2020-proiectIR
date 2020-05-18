@@ -11,12 +11,12 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer
 {
     public class WhatsInMyFridgeContext: DbContext
     {
-        private string connectionString;
+        private string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["WhatsInMyFridge"].ConnectionString;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             
-            optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=FridgeContents;Integrated Security=True;MultipleActiveResultSets=True");
+            optionsBuilder.UseSqlServer(connectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
