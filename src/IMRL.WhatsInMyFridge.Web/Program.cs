@@ -20,7 +20,6 @@ namespace IMRL.WhatsInMyFridge.Web
             Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration(_ => {
                 _.AddJsonFile("appsettings.json");
-                _.AddJsonFile("appsettings.local.json",optional:true);
                 })    
             .ConfigureWebHostDefaults(webBuilder =>
                 {
