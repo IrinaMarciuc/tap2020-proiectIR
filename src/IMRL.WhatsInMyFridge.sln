@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMRL.WhatsInMyFridge.DataAc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMRL.WhatsInMyFridge.DataAccess.SqlServer", "IMRL.WhatsInMyFridge.DataAccess.SqlServer\IMRL.WhatsInMyFridge.DataAccess.SqlServer.csproj", "{A375E922-3B63-4156-B8E9-956E179E5A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMRL.WhatsInMyFridge.Web", "IMRL.WhatsInMyFridge.Web\IMRL.WhatsInMyFridge.Web.csproj", "{1B64CB66-E039-496B-AD75-C554771CE84C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMRL.WhatsInMyFridge.Web", "IMRL.WhatsInMyFridge.Web\IMRL.WhatsInMyFridge.Web.csproj", "{1B64CB66-E039-496B-AD75-C554771CE84C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMRL.WhatsInMyFridge.Services.Identity", "IMRL.WhatsInMyFridge.Services.Identity\IMRL.WhatsInMyFridge.Services.Identity.csproj", "{697DE822-44C0-4FB8-A754-3852ACE26233}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1B64CB66-E039-496B-AD75-C554771CE84C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B64CB66-E039-496B-AD75-C554771CE84C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B64CB66-E039-496B-AD75-C554771CE84C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{697DE822-44C0-4FB8-A754-3852ACE26233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{697DE822-44C0-4FB8-A754-3852ACE26233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{697DE822-44C0-4FB8-A754-3852ACE26233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{697DE822-44C0-4FB8-A754-3852ACE26233}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
