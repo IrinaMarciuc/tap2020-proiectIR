@@ -7,11 +7,11 @@ using IMRL.WhatsInMyFridge.Core;
 using IMRL.WhatsInMyFridge.Core.Identity;
 namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer.Mappings
 {
-    class UserMapping
+    class UserMapping: IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("User")
+            builder.ToTable("Users")
                 .HasKey(u => u.Id);
         }
     }

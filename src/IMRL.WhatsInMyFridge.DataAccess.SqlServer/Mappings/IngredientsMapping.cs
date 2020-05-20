@@ -15,11 +15,9 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer.Mappings
 
         public void Configure(EntityTypeBuilder<Ingredient> builder)
         {
-            builder.ToTable("Ingredients")
-                .HasKey(_ => _.Id);
-            builder.Property(_ => _.name).HasColumnName("Name");
-
-
+            builder.ToTable("Ingredients");
+               builder.HasKey(i => i.Id);
+            builder.Property(i => i.name).HasColumnName("Name");
         }
     }
 }

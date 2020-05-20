@@ -8,9 +8,8 @@ namespace IMRL.WhatsInMyFridge.Core.Ingredients
 {
     public class Ingredient : IIngredient
     {
-        public Guid Id;
+        public Guid Id { get; set; }
         public string name { get; set; }
         public virtual IList<RecipeIngredient> RecipeIngredient { get; set; }
-
     }
 }

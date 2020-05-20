@@ -65,7 +65,7 @@
     <Build Include="dbo\Tables\Ingredients.sql" />
     <Build Include="dbo\Tables\Recipes.sql" />
     <Build Include="dbo\Tables\RecipeIngredients.sql" />
-    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
     <Build Include="dbo\Tables\UserRole.sql" />
   </ItemGroup>
 </Project>

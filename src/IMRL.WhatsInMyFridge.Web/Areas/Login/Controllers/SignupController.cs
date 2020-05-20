@@ -28,10 +28,7 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.Login.Controllers
         [HttpPost]
         public async Task<IActionResult> Signup(SignupViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+          
             if (ModelState.IsValid)
             {
                 var user = new User { Username = model.Email, Email = model.Email };
@@ -42,8 +39,9 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.Login.Controllers
                    await _signInManager.SignInAsync(user, isPersistent: false);
                    return RedirectToAction("index", "home");
                 }
+             
             }
-            return Redirect("/");
+            return View(model) ;
         }
     }
 }
