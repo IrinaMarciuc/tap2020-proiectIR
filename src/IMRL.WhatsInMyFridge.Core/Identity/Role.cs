@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IMRL.WhatsInMyFridge.Core.Identity
 {
-    class Role:IEntityBase
+    public class Role:IEntityBase
     {
         public Guid Id { get; set; }
 
