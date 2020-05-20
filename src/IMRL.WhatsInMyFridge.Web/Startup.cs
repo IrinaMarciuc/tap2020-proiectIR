@@ -101,7 +101,8 @@ namespace IMRL.WhatsInMyFridge.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(null, "Login/Login", new { area = "Login", controller = "Authentication", action = "Login" });                endpoints.MapControllerRoute(
+                endpoints.MapControllerRoute(null, "Login/Login", new { area = "Login", controller = "Signup", action = "Signup" });
+                endpoints.MapControllerRoute(null, "Login/Signup", new { area = "Login", controller = "Authentication", action = "Login" });                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

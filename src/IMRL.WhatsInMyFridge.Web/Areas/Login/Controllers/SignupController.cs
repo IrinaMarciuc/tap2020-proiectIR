@@ -13,9 +13,9 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.Login.Controllers
 {
     public class SignupController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        public SignupController(UserManager<IdentityUser> userManager,SignInManager<IdentityUser> signInManager)
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        public SignupController(UserManager<User> userManager,SignInManager<User> signInManager)
         {
            _userManager = userManager;
            _signInManager = signInManager;
@@ -34,7 +34,7 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.Login.Controllers
             }
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var user = new User { Username = model.Email, Email = model.Email };
             
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
