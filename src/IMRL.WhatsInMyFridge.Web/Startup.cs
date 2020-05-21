@@ -44,6 +44,7 @@ namespace IMRL.WhatsInMyFridge.Web
             });
             services.AddTransient<IDataRepository, DataRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<UserStore>();
             //services.AddTransient<ICustomersService, CustomersService>();
 
             services.AddMvc()
@@ -51,6 +52,7 @@ namespace IMRL.WhatsInMyFridge.Web
             services.AddIdentity<User, Role>()
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
+
             services.AddAuthentication()
                 .AddCookie(opt =>
                 {
@@ -101,8 +103,9 @@ namespace IMRL.WhatsInMyFridge.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(null, "Login/Login", new { area = "Login", controller = "Signup", action = "Signup" });
-                endpoints.MapControllerRoute(null, "Login/Signup", new { area = "Login", controller = "Authentication", action = "Login" });                endpoints.MapControllerRoute(
+                endpoints.MapControllerRoute(null, "Login/Login", new { area = "Login", controller = "Authentication", action = "Login" });
+                endpoints.MapControllerRoute(null, "Login/Signup", new { area = "Login", controller = "Signup", action = "Signup" });
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

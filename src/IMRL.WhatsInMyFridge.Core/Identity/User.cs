@@ -13,5 +13,11 @@ namespace IMRL.WhatsInMyFridge.Core.Identity
         public string Email { get; set; }
 
         public string PasswordHash { get; set; }
+
+        public User(string Username, string Email, string PasswordHash) {
+            this.Username = Username;
+            this.Email = Email;
+            this.PasswordHash = PasswordHash;
+        }
     }
 }

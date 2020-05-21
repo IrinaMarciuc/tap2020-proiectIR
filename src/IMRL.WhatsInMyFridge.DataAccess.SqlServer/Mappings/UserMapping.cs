@@ -13,6 +13,7 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer.Mappings
         {
             builder.ToTable("Users")
                 .HasKey(u => u.Id);
+
         }
     }
 }

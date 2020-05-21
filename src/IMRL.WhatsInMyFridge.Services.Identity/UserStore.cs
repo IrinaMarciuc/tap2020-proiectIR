@@ -8,6 +8,7 @@ using IMRL.WhatsInMyFridge.Core.Identity;
 using IMRL.WhatsInMyFridge.DataAccess;
 using IMRL.WhatsInMyFridge.DataAccess.Repositories;
 
+
 namespace IMRL.WhatsInMyFridge.Services.Identity
 {
     public class UserStore : IUserPasswordStore<User>
