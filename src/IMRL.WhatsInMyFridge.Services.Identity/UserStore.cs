@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using IMRL.WhatsInMyFridge.Core;
 using IMRL.WhatsInMyFridge.Core.Identity;
 using IMRL.WhatsInMyFridge.DataAccess;
 using IMRL.WhatsInMyFridge.DataAccess.Repositories;
-
 
 namespace IMRL.WhatsInMyFridge.Services.Identity
 {
@@ -104,7 +104,6 @@ namespace IMRL.WhatsInMyFridge.Services.Identity
         {
             var dbUser = _dataRepository.Query<User>()
                 .Single(u => u.Id == user.Id);
-            dbUser.Email = user.Email;
             dbUser.PasswordHash = user.PasswordHash;
             dbUser.Username = user.Username;
             _dataRepository.Update(dbUser);

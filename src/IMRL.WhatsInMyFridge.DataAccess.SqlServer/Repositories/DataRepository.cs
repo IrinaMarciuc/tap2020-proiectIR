@@ -33,7 +33,6 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer.Repositories
             dataContext.Add(entity);
         }
 
-        
 
         void IDataRepository.Update<TEntity>(TEntity entity)
         {

@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -44,25 +47,15 @@ namespace IMRL.WhatsInMyFridge.Web
             });
             services.AddTransient<IDataRepository, DataRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<UserStore>();
-            //services.AddTransient<ICustomersService, CustomersService>();
-
-            services.AddMvc()
-                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
-            services.AddIdentity<User, Role>()
-                .AddSignInManager()
-                .AddDefaultTokenProviders();
-
-            services.AddAuthentication()
-                .AddCookie(opt =>
-                {
-                    opt.LoginPath = "Account/Login";
-                    opt.LogoutPath = "Account/Logout";
-                    opt.AccessDeniedPath = "Account/Denied";
-                });
             services.AddTransient<IUserStore<User>, UserStore>();
             services.AddTransient<IUserPasswordStore<User>, UserStore>();
-            services.AddTransient<IRoleStore<Role>, RoleStore>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddMvc();
+            services.AddIdentityCore<User>()
+                .AddSignInManager()
+                .AddDefaultTokenProviders();
+            services.AddAuthentication();
 
         }
 
@@ -80,34 +73,25 @@ namespace IMRL.WhatsInMyFridge.Web
                 app.UseHsts();
             }
 
-            //var supportedCultures = new[]
-            //{
-            //    new CultureInfo("ro-RO")
-            //};
-            //app.UseRequestLocalization(new RequestLocalizationOptions
-            //{
-            //    DefaultRequestCulture = new RequestCulture("ro-RO"),
-            //    // Formatting numbers, dates, etc.
-            //    SupportedCultures = supportedCultures,
-            //    // UI strings that we have localized.
-            //    SupportedUICultures = supportedCultures
-            //});
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(null, "Login/Login", new { area = "Login", controller = "Authentication", action = "Login" });
-                endpoints.MapControllerRoute(null, "Login/Signup", new { area = "Login", controller = "Signup", action = "Signup" });
+                endpoints.MapControllerRoute(null, "Account/Logout", new { area = "Login", controller = "Signup", action = "Signup" });
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Account}/{action=Logout}/{id?}");
             });
         }
     }

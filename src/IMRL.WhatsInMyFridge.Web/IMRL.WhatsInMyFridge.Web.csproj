@@ -10,14 +10,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Login\Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\IMRL.WhatsInMyFridge.Core\IMRL.WhatsInMyFridge.Core.csproj" />
     <ProjectReference Include="..\IMRL.WhatsInMyFridge.DataAccess.SqlServer\IMRL.WhatsInMyFridge.DataAccess.SqlServer.csproj" />
     <ProjectReference Include="..\IMRL.WhatsInMyFridge.DataAccess\IMRL.WhatsInMyFridge.DataAccess.csproj" />
     <ProjectReference Include="..\IMRL.WhatsInMyFridge.Services.Identity\IMRL.WhatsInMyFridge.Services.Identity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\" />
+    <Folder Include="Models\Account\" />
   </ItemGroup>
 
 </Project>

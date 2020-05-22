@@ -13,6 +13,10 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer.Mappings
         {
             builder.ToTable("Users")
                 .HasKey(u => u.Id);
+            builder.Property(u => u.Username).HasColumnName("Username");
+            builder.Property(u => u.PasswordHash).HasColumnName("PasswordHash");
+            builder.Property(u => u.Role).HasColumnName("Role");
+
 
         }
     }

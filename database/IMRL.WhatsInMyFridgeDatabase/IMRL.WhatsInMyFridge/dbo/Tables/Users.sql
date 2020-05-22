@@ -3,12 +3,12 @@
     [Username]     NVARCHAR (50)    NOT NULL,
     [Email]        NVARCHAR (50)    NOT NULL,
     [PasswordHash] NVARCHAR (50)    NOT NULL,
-    CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_User_UserRole] FOREIGN KEY ([Id]) REFERENCES [dbo].[UserRole] ([Id])
+    [IsAdmin]      BIT              NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
 
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_User]
-    ON [dbo].[Users]([Username] ASC);
+CREATE NONCLUSTERED INDEX [IX_Users]
+    ON [dbo].[Users]([Id] ASC);
 
