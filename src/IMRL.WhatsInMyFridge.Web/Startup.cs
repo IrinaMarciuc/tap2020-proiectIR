@@ -22,6 +22,7 @@ using IMRL.WhatsInMyFridge.DataAccess;
 using IMRL.WhatsInMyFridge.DataAccess.Repositories;
 using IMRL.WhatsInMyFridge.DataAccess.SqlServer;
 using IMRL.WhatsInMyFridge.DataAccess.SqlServer.Repositories;
+using IMRL.WhatsInMyFridge.Services;
 
 namespace IMRL.WhatsInMyFridge.Web
 {
@@ -49,6 +50,7 @@ namespace IMRL.WhatsInMyFridge.Web
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserStore<User>, UserStore>();
             services.AddTransient<IUserPasswordStore<User>, UserStore>();
+            services.AddTransient<IAddRecipeService, AddRecipeService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddMvc();
@@ -85,7 +87,7 @@ namespace IMRL.WhatsInMyFridge.Web
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapControllerRoute(null, "Login/Login", new { area = "Login", controller = "Authentication", action = "Login" });
-                //endpoints.MapControllerRoute(null, "Account/Logout", new { area = "Login", controller = "Signup", action = "Signup" });
+                endpoints.MapControllerRoute(null, "AddRecipe/AddRecipe", new { area = "AddRecipe", controller = "AddRecipe", action = "AddRecipe" });
                 endpoints.MapControllerRoute(
                    name: "Logout",
                    pattern: "{controller=Account}/{action=Logout}/{id?}");
