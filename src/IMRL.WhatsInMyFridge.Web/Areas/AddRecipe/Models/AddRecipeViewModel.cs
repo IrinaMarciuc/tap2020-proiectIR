@@ -7,9 +7,9 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Models
 {
     public class AddRecipeViewModel
     {
-        string RecipeName { get; set; }
-        string Link { get; set; }
-        string RecipeType { get; set; }
+        public string RecipeName { get; set; }
+        public string Link { get; set; }
+        public string RecipeType { get; set; }
         public List<FormIngredient> Ingredients { get; set; } 
     }
 }

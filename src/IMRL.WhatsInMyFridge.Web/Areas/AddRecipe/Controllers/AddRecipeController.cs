@@ -28,6 +28,11 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Controllers
         {
             return View();
         }
-      
+        [HttpPost]
+        public IActionResult AddRecipe(AddRecipeViewModel model)
+        {
+            return View();
+        }
+
     }
 }
