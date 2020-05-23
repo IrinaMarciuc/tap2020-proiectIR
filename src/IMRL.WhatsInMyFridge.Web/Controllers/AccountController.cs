@@ -109,7 +109,8 @@ namespace IMRL.WhatsInMyFridge.Web.Controllers
         public IActionResult Logout()
         {
             var login = HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login");
+            //return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
         }
     }
 

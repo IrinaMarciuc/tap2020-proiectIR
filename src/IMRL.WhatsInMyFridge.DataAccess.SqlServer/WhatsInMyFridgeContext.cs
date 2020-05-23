@@ -11,10 +11,8 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer
 {
     public class WhatsInMyFridgeContext: DbContext
     {
-        public WhatsInMyFridgeContext()
-        {
-        }
-    private string connectionString;
+       
+        private string connectionString;
 
         public WhatsInMyFridgeContext(string connectionString)
         {
