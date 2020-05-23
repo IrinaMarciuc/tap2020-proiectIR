@@ -27,26 +27,26 @@
                         </li>
                             @if (User.IsInRole("Admin") || User.IsInRole("User"))
                             {
-                            <li class="nav-item">
-                                <div class="nav-link text-dark">Hello, @User.Identity.Name!</div>
-                            </li>
-                            <li class="nav-item">
-                                <form method="post" asp-controller="Account" aspcontroller="Logout">
-                                    <input type="submit" value="Logout" />
-                                </form>
-                            </li>
+                                <li class="nav-item">
+                                    <div class="nav-link text-dark">Hello, @User.Identity.Name!</div>
+                                </li>
+                                <li class="nav-item">
+                                    <form method="post" asp-controller="Account" aspcontroller="Logout">
+                                        <input type="submit" value="Logout" />
+                                    </form>
+                                </li>
 
 
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>    
-                        }
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Autentificare</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Înregistrare</a>
+                                </li>    
+                            }
 
                         </ul>
                 </div>

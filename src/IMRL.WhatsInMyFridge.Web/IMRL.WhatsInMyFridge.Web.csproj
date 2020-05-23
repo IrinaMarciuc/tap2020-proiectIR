@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
-    <Folder Include="Models\Account\" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace IMRL.WhatsInMyFridge.Web.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

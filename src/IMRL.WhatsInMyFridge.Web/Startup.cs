@@ -84,14 +84,14 @@ namespace IMRL.WhatsInMyFridge.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(null, "Login/Login", new { area = "Login", controller = "Authentication", action = "Login" });
-                endpoints.MapControllerRoute(null, "Account/Logout", new { area = "Login", controller = "Signup", action = "Signup" });
+                //endpoints.MapControllerRoute(null, "Login/Login", new { area = "Login", controller = "Authentication", action = "Login" });
+                //endpoints.MapControllerRoute(null, "Account/Logout", new { area = "Login", controller = "Signup", action = "Signup" });
+                endpoints.MapControllerRoute(
+                   name: "Logout",
+                   pattern: "{controller=Account}/{action=Logout}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                   name: "default",
-                   pattern: "{controller=Account}/{action=Logout}/{id?}");
             });
         }
     }
