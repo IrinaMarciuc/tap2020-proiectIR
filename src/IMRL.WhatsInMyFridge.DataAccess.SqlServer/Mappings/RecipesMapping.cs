@@ -19,13 +19,7 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer.Mappings
             builder.Property(_ => _.name).HasColumnName("Name");
             builder.Property(_ => _.link).HasColumnName("Link");
             builder.Property(_ => _.status).HasColumnName("Status");
-
-
-            builder.HasDiscriminator<int>("RecipeTypeId")
-                .HasValue<Normal>(1)
-                .HasValue<Vegan>(2)
-                .HasValue<Vegetarian>(3);
-
+            builder.Property(_ => _.TypeId).HasColumnName("RecipeTypeId");
 
         }
     }

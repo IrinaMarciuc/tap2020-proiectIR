@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IMRL.WhatsInMyFridge.Core.Ingredients
 {
-    public class Ingredient : IIngredient
+    public class Ingredient : IEntityBase, IIngredient
     {
         public Guid Id { get; set; }
         public string name { get; set; }
