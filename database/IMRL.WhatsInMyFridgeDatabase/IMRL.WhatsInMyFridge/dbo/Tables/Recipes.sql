@@ -1,9 +1,10 @@
 ﻿CREATE TABLE [dbo].[Recipes] (
-    [Id]           UNIQUEIDENTIFIER NOT NULL,
-    [Name]         NVARCHAR (50)    NOT NULL,
-    [StatusId]     NVARCHAR (50)    NOT NULL,
-    [RecipeTypeId] INT              NOT NULL,
-    CONSTRAINT [PK_Recipes] PRIMARY KEY CLUSTERED ([Id] ASC)
+    [RecipeId]   UNIQUEIDENTIFIER NOT NULL,
+    [Name]       NVARCHAR (50)    NOT NULL,
+    [Status]     NVARCHAR (50)    NOT NULL,
+    [RecipeType] VARCHAR (50)     NOT NULL,
+    [Link]       NVARCHAR (100)   NOT NULL,
+    CONSTRAINT [PK_Recipes] PRIMARY KEY CLUSTERED ([RecipeId] ASC)
 );
 
 

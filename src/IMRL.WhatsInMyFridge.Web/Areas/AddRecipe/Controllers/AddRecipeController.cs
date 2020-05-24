@@ -29,9 +29,18 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddRecipe(AddRecipeViewModel model)
+        public async Task<IActionResult> AddRecipe(AddRecipeViewModel model)
         {
-            return View();
+            var status = "Pending";
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            if (User.IsInRole("Admin")) {
+                status = "Approved";
+            }
+            _addRecipeService.AddRecipeAsync(model.RecipeName,status,model.RecipeType,model.Link,model.Ingredients,model.Quantities,model.UnitsOfMeasurement);
+            return RedirectToAction("Index", "Home");
         }
 
     }

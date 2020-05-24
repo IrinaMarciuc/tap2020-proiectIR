@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 
 namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer
 {
@@ -13,7 +14,11 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer
         }
         public void Commit()
         {
-            dataContext.SaveChanges();
+            using (var scope = new TransactionScope())
+            {
+                dataContext.SaveChanges();
+                scope.Complete();
+            }   
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IRecipe
     {
-        string link { get; }
-        string name { get; }
+        string Link { get; }
+        string Name { get; }
     }
 }
