@@ -32,10 +32,10 @@
                 </div>
                 <div class="form-group" >
                     <label for="Ingredients">Ingrediente(maxim 15, altfel nimeni nu se oboseste sa citeasca reteta): </label>
-                    <div class="form-group" for="Ingredients[0]" >
-                        <input class="form-control" type="text" name="Ingredients[0].Name" placeholder="Nume ingredient" />
-                        <input class="form-control" type="number" name="Ingredients[0].Quantity" placeholder="Cantitate" />
-                        <input class="form-control" type="text" name="Ingredients[0].UnitOfMeasurement" placeholder="Unitate de masura" />
+                    <div class="form-group" >
+                        <input class="form-control" type="text" name="Ingredients[0]" placeholder="Nume ingredient" />
+                        <input class="form-control" type="number" name="Quantities[0]" placeholder="Cantitate" step="0.01" />
+                        <input class="form-control" type="text" name="UnitsOfMeasurement[0]" placeholder="Unitate de masura" />
                     </div>
                 </div>
                 <div class="form-group" id="textboxcontainer" style="display:inline;">
@@ -53,11 +53,11 @@
     <script type="text/javascript">
             var i = 1;
         $("#AddButton").click(function () {
-            var div = $("<div />").attr("for", "Ingredients[" + i +"]");
+            var div = $("<div />");
                 var value = "";
-                var IngredientBox = $("<input />").attr("type", "text").attr("placeholder", "Nume ingredient").attr("name", "Ingredients[" + i + "].Name").attr("class","form-control");
-                var QuantityBox = $("<input />").attr("type", "number").attr("placeholder", "Cantitate").attr("name", "Ingredients[" + i + "].Quantity").attr("class", "form-control");
-                var UoMBox = $("<input />").attr("type", "text").attr("placeholder", "Unitate de masura").attr("name", "Ingredients[" + i + "].UnitOfMeasurement").attr("class", "form-control");
+                var IngredientBox = $("<input />").attr("type", "text").attr("placeholder", "Nume ingredient").attr("name", "Ingredients[" + i + "]").attr("class","form-control");
+                var QuantityBox = $("<input />").attr("type", "number").attr("placeholder", "Cantitate").attr("name", "Quantities[" + i + "]").attr("class", "form-control").attr("step","0.01");
+                var UoMBox = $("<input />").attr("type", "text").attr("placeholder", "Unitate de masura").attr("name", "UnitsOfMeasurement[" + i + "]").attr("class", "form-control");
 
                 IngredientBox.val(value);
                 QuantityBox.val(value);

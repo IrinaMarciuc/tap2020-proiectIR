@@ -14,12 +14,12 @@ namespace IMRL.WhatsInMyFridge.DataAccess.SqlServer.Mappings
 
         public void Configure(EntityTypeBuilder<Recipe> builder)
         {
-            builder.ToTable("Recipes")
-                .HasKey(_ => _.Id);
-            builder.Property(_ => _.name).HasColumnName("Name");
-            builder.Property(_ => _.link).HasColumnName("Link");
-            builder.Property(_ => _.status).HasColumnName("Status");
-            builder.Property(_ => _.TypeId).HasColumnName("RecipeTypeId");
+            builder.ToTable("Recipes");
+            builder.Property(_ => _.Id).HasColumnName("RecipeId");
+            builder.Property(_ => _.Name).HasColumnName("Name");
+            builder.Property(_ => _.Link).HasColumnName("Link");
+            builder.Property(_ => _.Status).HasColumnName("Status");
+            builder.Property(_ => _.RecipeType).HasColumnName("RecipeType");
 
         }
     }

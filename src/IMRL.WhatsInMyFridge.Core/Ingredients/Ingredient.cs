@@ -10,6 +10,10 @@ namespace IMRL.WhatsInMyFridge.Core.Ingredients
     {
         public Guid Id { get; set; }
         public string name { get; set; }
-        public virtual IList<RecipeIngredient> RecipeIngredient { get; set; }
+        public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; }
+        public Ingredient(Guid Id, string name) {
+            this.name = name;
+            this.Id = Id;
+        }
     }
 }

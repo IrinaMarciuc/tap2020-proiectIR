@@ -43,7 +43,7 @@ namespace IMRL.WhatsInMyFridge.Web
             services.AddTransient<WhatsInMyFridgeContext>(_ =>
             {
                 var config = _.GetService<IConfiguration>();
-                var connString = config.GetConnectionString("WhatsInMyFridge");
+                var connString = config.GetConnectionString("Fridge");
                 return new WhatsInMyFridgeContext(connString);
             });
             services.AddTransient<IDataRepository, DataRepository>();
