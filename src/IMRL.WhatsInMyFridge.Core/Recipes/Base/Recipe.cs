@@ -12,7 +12,7 @@ namespace IMRL.WhatsInMyFridge.Core.Recipes.Base
         public string Name { get; protected set; }
         public string Status { get; protected set; }
         public string Link { get; protected set; }
-        public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; }
+        public virtual IList<RecipeIngredient> RecipeIngredients { get; set; }
 
 
         public Recipe(Guid Id,string RecipeType,string Name,string Status,string Link)
@@ -22,6 +22,13 @@ namespace IMRL.WhatsInMyFridge.Core.Recipes.Base
             this.Name = Name;
             this.Status = Status;
             this.Link = Link;
+        }
+        public Recipe(Guid Id, string Name, string Link)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.Link = Link;
+            RecipeIngredients = new List<RecipeIngredient>();
         }
     }
 }

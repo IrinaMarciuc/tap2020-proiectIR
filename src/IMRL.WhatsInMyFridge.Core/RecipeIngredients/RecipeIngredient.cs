@@ -15,7 +15,7 @@ namespace IMRL.WhatsInMyFridge.Core.RecipeIngredients
         public string UnitOfMeasurement { get; set; }
         public Double Quantity { get; set; }
         public Guid Id { get; set; }
-        public Ingredient Ingredient { get; set; }
+        public string Ingredient { get; set; }
         public Recipe Recipe { get; set; }
         public RecipeIngredient(Guid RecipeId, Guid IngredientId, Double Quantity, string UnitOfMeasurement) {
             this.RecipeId = RecipeId;
@@ -23,6 +23,12 @@ namespace IMRL.WhatsInMyFridge.Core.RecipeIngredients
             this.Quantity = Quantity;
             this.UnitOfMeasurement = UnitOfMeasurement;
         }
-          
+        public RecipeIngredient(string Ingredient,Double Quantity, string UnitOfMeasurement)
+        {
+            this.Ingredient = Ingredient;
+            this.Quantity = Quantity;
+            this.UnitOfMeasurement = UnitOfMeasurement;
+        }
+
     }
 }

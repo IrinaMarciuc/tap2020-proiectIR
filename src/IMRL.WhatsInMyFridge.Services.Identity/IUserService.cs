@@ -15,7 +15,7 @@ namespace IMRL.WhatsInMyFridge.Services.Identity
     }
     public class UserService : IUserService
     {
-        public static string connectionString = "Data Source=DESKTOP-GAKRRLP;Initial Catalog=FridgeContents;Integrated Security=True";
+        public static string connectionString = "Data Source=DESKTOP-NK0HCAB;Initial Catalog=FridgeContents;Integrated Security=True";
         SqlConnection con = new SqlConnection(connectionString);
         string q;
         public Task<User> RegisterUserService(string Username, string Password)
