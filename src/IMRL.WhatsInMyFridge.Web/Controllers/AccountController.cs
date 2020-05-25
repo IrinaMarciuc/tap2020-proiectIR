@@ -8,12 +8,17 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using IMRL.WhatsInMyFridge.Web.Models;
 using IMRL.WhatsInMyFridge.Web.Models.Account;
-
+using IMRL.WhatsInMyFridge.Services.Identity;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace IMRL.WhatsInMyFridge.Web.Controllers
 {
     public class AccountController : Controller
     {
+        IUserService _UserService;
+        public AccountController(IUserService UserService) {
+            _UserService = UserService;
+        }
 
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
@@ -24,7 +29,7 @@ namespace IMRL.WhatsInMyFridge.Web.Controllers
 
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -34,25 +39,19 @@ namespace IMRL.WhatsInMyFridge.Web.Controllers
             //Here can be implemented checking logic from the database  
             ClaimsIdentity identity = null;
             bool isAuthenticated = false;
+            var result = await _UserService.SignInService(model.Username, model.Password);
 
-            if (model.Username.Contains("Raluca") || model.Username.Contains("Irina"))
+            if (result== null)
             {
-
-                //Create the identity for the user  
-                identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, model.Username),
-                    new Claim(ClaimTypes.Role, "Admin")
-                }, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                isAuthenticated = true;
+                ModelState.AddModelError(String.Empty, "Invalid login attempt");
+                return View(model);  
             }
 
             else
             {
-                //Create the identity for the user  
                 identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, model.Username),
-                    new Claim(ClaimTypes.Role, "User")
+                    new Claim(ClaimTypes.Name, result.Username),
+                    new Claim(ClaimTypes.Role, result.Role)
                 }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 isAuthenticated = true;
@@ -74,7 +73,7 @@ namespace IMRL.WhatsInMyFridge.Web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Register(RegisterViewModel model)
+        public async  Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -85,12 +84,12 @@ namespace IMRL.WhatsInMyFridge.Web.Controllers
             //Here can be implemented checking logic from the database  
             ClaimsIdentity identity = null;
             bool isAuthenticated = false;
-
+            var result = await _UserService.RegisterUserService(model.Username, model.Password);
 
                 //Create the identity for the user  
                 identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, model.Username),
-                    new Claim(ClaimTypes.Role, "User")
+                    new Claim(ClaimTypes.Name, result.Username),
+                    new Claim(ClaimTypes.Role, result.Role)
                 }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 isAuthenticated = true;
