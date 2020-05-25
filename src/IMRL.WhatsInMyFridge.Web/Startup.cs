@@ -16,13 +16,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using IMRL.WhatsInMyFridge.Core.Identity;
-//using IMRL.WhatsInMyFridge.Services;
+using IMRL.WhatsInMyFridge.Services;
 using IMRL.WhatsInMyFridge.Services.Identity;
 using IMRL.WhatsInMyFridge.DataAccess;
 using IMRL.WhatsInMyFridge.DataAccess.Repositories;
 using IMRL.WhatsInMyFridge.DataAccess.SqlServer;
 using IMRL.WhatsInMyFridge.DataAccess.SqlServer.Repositories;
-using IMRL.WhatsInMyFridge.Services;
 
 namespace IMRL.WhatsInMyFridge.Web
 {
@@ -51,6 +50,7 @@ namespace IMRL.WhatsInMyFridge.Web
             services.AddTransient<IUserStore<User>, UserStore>();
             services.AddTransient<IUserPasswordStore<User>, UserStore>();
             services.AddTransient<IAddRecipeService, AddRecipeService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddMvc();

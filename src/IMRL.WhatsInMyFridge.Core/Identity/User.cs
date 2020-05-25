@@ -13,8 +13,7 @@ namespace IMRL.WhatsInMyFridge.Core.Identity
         
         public string PasswordHash { get; set; }
 
-        public User(Guid Id, string Username, string Role) {
-            this.Id = Id;
+        public User(string Username, string Role) {
             this.Username = Username;
             this.Role = Role;
         }
