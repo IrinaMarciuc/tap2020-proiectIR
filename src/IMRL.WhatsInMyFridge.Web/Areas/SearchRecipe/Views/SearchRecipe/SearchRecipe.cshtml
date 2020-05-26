@@ -5,15 +5,20 @@
 @model IMRL.WhatsInMyFridge.Web.Areas.SearchRecipe.Models.SearchRecipeViewModel
 <div class="container">
     <div class="row">
-        <div class="col-9">
+        <div class="col-12">
             <form asp-controller="SearchRecipe" asp-action="SearchRecipe" asp-area="SearchRecipe" method="get">
                 <div class="form-row">
-                    <div class="col-10">
+                    <div class="form-group col-2">
+                        <label>Scrie un ingredient: </label>
+                    </div>
+                    <div class="col-4">
                         <input type="search" class="input-search-box" name="SearchTerm" value="@Model.SearchTerm" />
                     </div>
-                    <div class="form-group" for="RecipeType">
+                    <div class="form-group col-2">
                         <label for="RecipeType">Selecteaza tipul Retetei: </label>
-                        <select class="form-control" name="RecipeType">
+                    </div>
+                    <div class="form-group col-2" for="RecipeType">
+                        <select class="form-control " name="RecipeType" value="Tipul retetei">
                             <option value="normal">Normal</option>
                             <option value="vegan">Vegan</option>
                             <option value="vegetarian">Vegetarian</option>
@@ -29,12 +34,6 @@
     </div>
     <div class="row">
         <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Nume</th>
-                    <th scope="col">Link</th>
-                </tr>
-            </thead>
             <tbody>
                 @foreach (var item in Model.Results)
                 {
@@ -42,8 +41,22 @@
                         <td>
                             <span>@item.Name</span>
                         </td>
+                        
+                    </tr>
+                    <tr>
                         <td>
-                            <span>@item.Link</span>
+                            <ul>
+                                @foreach (var ingredient in item.RecipeIngredients) { 
+                                <li>
+                                   @ingredient.Ingredient @ingredient.Quantity @ingredient.UnitOfMeasurement
+                                </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="@item.Link">Vezi pasii retetei</a>
                         </td>
                     </tr>
                 }

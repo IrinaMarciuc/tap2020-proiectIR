@@ -22,7 +22,7 @@ namespace IMRL.WhatsInMyFridge.Services
     {
         private readonly IDataRepository _dataRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public static string connectionString = "Data Source=DESKTOP-NK0HCAB;Initial Catalog=FridgeContents;Integrated Security=True";
+        public static string connectionString = "Data Source=DESKTOP-GAKRRLP;Initial Catalog=FridgeContents;Integrated Security=True";
         SqlConnection con = new SqlConnection(connectionString);
         string q;
 
@@ -34,7 +34,7 @@ namespace IMRL.WhatsInMyFridge.Services
         public void AddIngredient(Guid Id, string Name )
         {
             var ingredient = new Ingredient(Id, Name);
-            q = "insert into Ingredients(IngredientId,Name)values('" + ingredient.Id+ "','" + ingredient.name + "')";
+            q = "insert into Ingredients(IngredientId,IngredientName)values('" + ingredient.Id+ "','" + ingredient.name + "')";
             SqlCommand cmd = new SqlCommand(q, con);
             cmd.ExecuteNonQuery();
            // _dataRepository.Insert(ingredient);
@@ -80,7 +80,7 @@ namespace IMRL.WhatsInMyFridge.Services
         }
         public Guid getId(string name) {
             Guid id;
-        q="select * from Ingredients where Name='"+name+"'";
+        q="select * from Ingredients where IngredientName='"+name+"'";
             using (SqlCommand command = new SqlCommand(q, con))
             {
                 SqlDataReader reader = command.ExecuteReader();
