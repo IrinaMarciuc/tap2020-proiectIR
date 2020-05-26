@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IMRL.WhatsInMyFridge.Web.Areas.Admin.Models.PendingRecipeViewModel
+<h1>Retete in asteptare</h1>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <tbody>
+                @foreach (var item in Model.Results)
+                {
+                    <tr>
+                        <td>
+                            <span>@item.Name</span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Tipul Retetei: @item.RecipeType</span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                @foreach (var ingredient in item.RecipeIngredients)
+                                {
+                                    <li>
+                                        @ingredient.Ingredient @ingredient.Quantity @ingredient.UnitOfMeasurement
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="@item.Link">Link-ul retetei</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @using (@Html.BeginForm())
+                            {
+                            @Html.AntiForgeryToken()
+
+                            @Html.Hidden("id", item.Id)
+                            <button type="submit" name="SubmitButton" value="Accept" class="btn btn-sm btn-success">Aprobă</button>
+                            <button type="submit" name="SubmitButton" value="Decline" class="btn btn-sm btn-danger">Respinge</button>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

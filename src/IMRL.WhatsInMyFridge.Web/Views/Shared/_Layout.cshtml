@@ -34,6 +34,13 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="AddRecipe" asp-controller="AddRecipe" asp-action="AddRecipe">Adauga o reteta noua</a>
                             </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="PendingRecipe" asp-action="Index"> Retete in asteptare</a>
+                                </li>
+
+                            }
                             <li class="nav-item">
                                 <div class="nav-link text-dark">Hello, @User.Identity.Name!</div>
                             </li>
