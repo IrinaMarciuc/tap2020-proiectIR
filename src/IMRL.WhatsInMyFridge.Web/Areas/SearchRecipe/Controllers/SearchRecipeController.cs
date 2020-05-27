@@ -11,10 +11,12 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.SearchRecipe.Controllers
     public class SearchRecipeController : Controller
     {
         private readonly ISearchRecipeService _searchRecipeService;
+        private readonly IReportRecipeService _reportRecipeService;
 
-        public SearchRecipeController(ISearchRecipeService searchRecipeService)
+        public SearchRecipeController(ISearchRecipeService searchRecipeService, IReportRecipeService reportRecipeService)
         {
             _searchRecipeService = searchRecipeService;
+            _reportRecipeService = reportRecipeService;
         }
 
         public async Task<IActionResult> SearchRecipe(SearchRecipeViewModel viewModel)
@@ -28,5 +30,26 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.SearchRecipe.Controllers
             });
         }
 
+        [ActionName("SearchRecipe")]
+        [HttpPost]
+        public async Task<ActionResult> IndexPost(string button, Guid id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            string buttonClicked = Request.Form["SubmitButton"];
+            string Description = Request.Form["ReportDescription"];
+            if (buttonClicked == "Send")
+            {
+                _reportRecipeService.AddReport(id, Description);
+
+            }
+            return RedirectToAction("Message");
+        }
+        public IActionResult Message() {
+            return View();
+        }
     }
 }

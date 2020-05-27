@@ -20,6 +20,7 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Controllers
         public async Task<IActionResult> Index(PendingRecipeViewModel viewModel)
         {
             var results = await _pendingRecipeService.FindPendingRecipes();
+            var i = 0;
 
             return View(new PendingRecipeViewModel
             {
@@ -28,7 +29,7 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Controllers
         }
         [ActionName("Index")]
         [HttpPost]
-        public async Task<ActionResult> IndexPost(string button, Guid id)
+        public async Task<ActionResult> IndexPost(Guid id)
         {
             if (id == null)
             {

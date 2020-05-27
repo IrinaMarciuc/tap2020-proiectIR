@@ -1,5 +1,4 @@
-﻿using IMRL.WhatsInMyFridge.Core.Ingredients;
-using IMRL.WhatsInMyFridge.Core.Recipes.Base;
+﻿using IMRL.WhatsInMyFridge.Core.Recipes.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
