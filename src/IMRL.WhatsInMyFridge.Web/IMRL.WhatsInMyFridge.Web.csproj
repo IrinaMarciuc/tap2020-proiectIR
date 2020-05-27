@@ -23,4 +23,9 @@
     <Folder Include="Areas\SearchRecipe\Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\food1.png" />
+    <None Include="wwwroot\images\Logo.png" />
+  </ItemGroup>
+
 </Project>

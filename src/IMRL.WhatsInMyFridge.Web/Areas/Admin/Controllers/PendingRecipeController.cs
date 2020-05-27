@@ -20,7 +20,6 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Controllers
         public async Task<IActionResult> Index(PendingRecipeViewModel viewModel)
         {
             var results = await _pendingRecipeService.FindPendingRecipes();
-            var i = 0;
 
             return View(new PendingRecipeViewModel
             {

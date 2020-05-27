@@ -23,7 +23,7 @@ namespace IMRL.WhatsInMyFridge.Services
     }
     public class ReportRecipeService : IReportRecipeService
     {
-        public static string connectionString = "Data Source=DESKTOP-GAKRRLP;Initial Catalog=FridgeContents;Integrated Security=True;MultipleActiveResultSets=True";
+        public static string connectionString = "Data Source=DESKTOP-NK0HCAB;Initial Catalog=FridgeContents;Integrated Security=True;MultipleActiveResultSets=True";
         SqlConnection con = new SqlConnection(connectionString);
         string q, IngredientQuery;
         public void AddReport(Guid RecipeId, string ReportDescription)

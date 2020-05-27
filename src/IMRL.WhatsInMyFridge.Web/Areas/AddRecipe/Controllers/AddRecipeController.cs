@@ -40,7 +40,11 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Controllers
                 status = "Approved";
             }
             _addRecipeService.AddRecipeAsync(model.RecipeName,status,model.RecipeType,model.Link,model.Ingredients,model.Quantities,model.UnitsOfMeasurement);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AddMessage");
+        }
+        public IActionResult AddMessage()
+        {
+            return View();
         }
 
     }

@@ -1,0 +1,12 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "Message";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (User.IsInRole("Admin"))
+{
+    <p>Reteta a fost adaugata!</p>
+}
+else
+{<p>Reteta va fi revizuita de catre administrator si daca totul e in regula va fi adaugata!</p>}
+
