@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IMRL.WhatsInMyFridge.Web.Areas.Admin.Models.PendingRecipeViewModel
+<h1>Raportari</h1>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <tbody>
+                @foreach (var item in Model.Results)
+                {
+                    <tr>
+                        <td>
+                            <span>@item.Name</span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Tipul Retetei: @item.RecipeType</span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                @foreach (var ingredient in item.RecipeIngredients)
+                                {
+                                    <li>
+                                        @ingredient.Ingredient @ingredient.Quantity @ingredient.UnitOfMeasurement
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="@item.Link">Link-ul retetei</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Motivul Raportarii: @item.Report.ReportDescription
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @using (@Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @Html.Hidden("id", item.Id)
+                                <button type="submit" name="SubmitButton" value="Change" class="btn btn-sm btn-success">Totul este în regulă</button>
+                                <button type="submit" name="SubmitButton" value="Delete" class="btn btn-sm btn-danger">Elimină rețeta din baza de date</button>
+                                <select class="col-3" name="RecipeType">
+                                    <option value="normal">Normal</option>
+                                    <option value="vegan">Vegan</option>
+                                    <option value="vegetarian">Vegetarian</option>
+                                </select>
+                                <button type="submit" name="SubmitButton" value="ChangeType" class="btn btn-sm btn-info">Modifică tipul rețetei</button>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

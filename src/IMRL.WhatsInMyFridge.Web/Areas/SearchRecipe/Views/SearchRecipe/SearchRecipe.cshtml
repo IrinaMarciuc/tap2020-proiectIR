@@ -8,23 +8,23 @@
         <div class="col-12">
             <form asp-controller="SearchRecipe" asp-action="SearchRecipe" asp-area="SearchRecipe" method="get">
                 <div class="form-row">
-                    <div class="form-group col-2">
+                    <div class="form-group">
                         <label>Scrie un ingredient: </label>
                     </div>
-                    <div class="col-4">
+                    <div>
                         <input type="search" class="input-search-box" name="SearchTerm" value="@Model.SearchTerm" />
                     </div>
-                    <div class="form-group col-2">
+                    <div class="form-group">
                         <label for="RecipeType">Selecteaza tipul Retetei: </label>
                     </div>
-                    <div class="form-group col-2" for="RecipeType">
+                    <div class="form-group" for="RecipeType">
                         <select class="form-control " name="RecipeType" value="Tipul retetei">
                             <option value="normal">Normal</option>
                             <option value="vegan">Vegan</option>
                             <option value="vegetarian">Vegetarian</option>
                         </select>
                     </div>
-                    <div class="col-2">
+                    <div>
                         <input type="submit" value="Cautare" />
                     </div>
                 </div>
@@ -41,15 +41,16 @@
                         <td>
                             <span>@item.Name</span>
                         </td>
-                        
+
                     </tr>
                     <tr>
                         <td>
                             <ul>
-                                @foreach (var ingredient in item.RecipeIngredients) { 
-                                <li>
-                                   @ingredient.Ingredient @ingredient.Quantity @ingredient.UnitOfMeasurement
-                                </li>
+                                @foreach (var ingredient in item.RecipeIngredients)
+                                {
+                                    <li>
+                                        @ingredient.Ingredient @ingredient.Quantity @ingredient.UnitOfMeasurement
+                                    </li>
                                 }
                             </ul>
                         </td>
@@ -59,9 +60,29 @@
                             <a href="@item.Link">Vezi pasii retetei</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" id="ReportToggle" class="btn btn-sm btn-danger">Report</button>
+                            @using (@Html.BeginForm(null, null, FormMethod.Post, new { id = "ReportForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @Html.Hidden("id", item.Id)
+                                <input type="text" placeholder="Scrie aici motivul raportarii" name="ReportDescription">
+                                <button type="submit" name="SubmitButton" value="Send" class="btn btn-sm btn-danger">Trimite</button>
+                            }
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+@section Scripts{
+    <script type="text/javascript">
+        $("#ReportToggle").click(function () {
+            $("#ReportForm").toggle();
+        });
+    </script>
+}
 

@@ -53,6 +53,7 @@ namespace IMRL.WhatsInMyFridge.Web
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ISearchRecipeService, SearchRecipeService>();
             services.AddTransient<IPendingRecipeService, PendingRecipeService>();
+            services.AddTransient<IReportRecipeService, ReportRecipeService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddMvc();
@@ -89,8 +90,10 @@ namespace IMRL.WhatsInMyFridge.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(null, "Admin/Index", new { area = "Admin", controller = "PendingRecipe", action = "Index" });
+                endpoints.MapControllerRoute(null, "Admin/FindReportedRecipes", new { area = "Admin", controller = "ReportedRecipes", action = "FindReportedRecipes" });
                 endpoints.MapControllerRoute(null, "Admin/Approve", new { area = "Admin", controller = "PendingRecipe", action = "Approve" });
                 endpoints.MapControllerRoute(null, "SearchRecipe/SearchRecipe", new { area = "SearchRecipe", controller = "SearchRecipe", action = "SearchRecipe" });
+                endpoints.MapControllerRoute(null, "SearchRecipe/Message", new { area = "SearchRecipe", controller = "SearchRecipe", action = "Message" });
                 endpoints.MapControllerRoute(null, "AddRecipe/AddRecipe", new { area = "AddRecipe", controller = "AddRecipe", action = "AddRecipe" });
                 endpoints.MapControllerRoute(
                    name: "Logout",
