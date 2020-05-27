@@ -20,7 +20,6 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.Admin.Controllers
         public async Task<IActionResult> FindReportedRecipes(PendingRecipeViewModel viewModel)
         {
             var results = await _reportRecipeService.FindReportedRecipesAsync();
-            var i = 0;
 
             return View(new PendingRecipeViewModel
             {
@@ -50,7 +49,6 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.Admin.Controllers
             {
                 string NewType= Request.Form["RecipeType"];
                 var result = await _reportRecipeService.ChangeTypeAsync(id,NewType);
-                var j = 0;
             }
             //Save Record and Redirect
             return RedirectToAction("FindReportedRecipes");

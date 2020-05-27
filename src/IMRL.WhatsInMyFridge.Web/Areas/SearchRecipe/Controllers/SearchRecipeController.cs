@@ -32,13 +32,8 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.SearchRecipe.Controllers
 
         [ActionName("SearchRecipe")]
         [HttpPost]
-        public async Task<ActionResult> IndexPost(string button, Guid id)
+        public async Task<ActionResult> IndexPost(Guid id)
         {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-
             string buttonClicked = Request.Form["SubmitButton"];
             string Description = Request.Form["ReportDescription"];
             if (buttonClicked == "Send")
