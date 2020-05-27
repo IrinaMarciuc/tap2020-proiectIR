@@ -4,11 +4,19 @@
 }
 
 @model IMRL.WhatsInMyFridge.Web.Areas.Admin.Models.PendingRecipeViewModel
-<h1>Raportari</h1>
+<h1>Reclamatii</h1>
 <div class="container">
     <div class="row">
         <table class="table">
             <tbody>
+                @if (Model.Results.Count == 0)
+                {
+                    <tr>
+                        <td>
+                            <p>Nu este nicio reteta reclamata.</p>
+                        </td>
+                    </tr>
+                }
                 @foreach (var item in Model.Results)
                 {
                     <tr>

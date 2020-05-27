@@ -9,6 +9,14 @@
     <div class="row">
         <table class="table">
             <tbody>
+                @if (Model.Results.Count == 0)
+                {
+                <tr>
+                    <td>
+                        <p>Nu este nicio reteta in asteptare.</p>
+                    </td>
+                </tr>
+                }
                 @foreach (var item in Model.Results)
                 {
                     <tr>

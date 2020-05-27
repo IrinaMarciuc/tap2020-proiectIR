@@ -64,6 +64,17 @@
                         <td>
                             <button type="submit" id="ReportToggle" class="btn btn-sm btn-danger">Report</button>
                             <div id="ReportForm" style="display:none">
+
+                    @using (@Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.Hidden("id", item.Id)
+                                    <input type="text" placeholder="Scrie aici motivul raportarii" name="ReportDescription">
+                                    <button type="submit" name="SubmitButton" value="Send" class="btn btn-sm btn-danger">Trimite</button>
+                                }
+                            </div>
+
                             @using (@Html.BeginForm())
                             {
                                 @Html.AntiForgeryToken()
@@ -73,6 +84,7 @@
                                 <button type="submit" name="SubmitButton" value="Send" class="btn btn-sm btn-danger">Trimite</button>
                             }
                                 </div>
+
                         </td>
                     </tr>
                 }

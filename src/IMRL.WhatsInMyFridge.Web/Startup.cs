@@ -89,6 +89,7 @@ namespace IMRL.WhatsInMyFridge.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(null, "AddRecipe/AddMessage", new { area = "AddRecipe", controller = "AddRecipe", action = "AddMessage" });
                 endpoints.MapControllerRoute(null, "Admin/Index", new { area = "Admin", controller = "PendingRecipe", action = "Index" });
                 endpoints.MapControllerRoute(null, "Admin/FindReportedRecipes", new { area = "Admin", controller = "ReportedRecipes", action = "FindReportedRecipes" });
                 endpoints.MapControllerRoute(null, "Admin/Approve", new { area = "Admin", controller = "PendingRecipe", action = "Approve" });
