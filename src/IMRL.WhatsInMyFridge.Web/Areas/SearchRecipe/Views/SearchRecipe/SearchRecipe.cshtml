@@ -63,7 +63,8 @@
                     <tr>
                         <td>
                             <button type="submit" id="ReportToggle" class="btn btn-sm btn-danger">Report</button>
-                            @using (@Html.BeginForm(null, null, FormMethod.Post, new { id = "ReportForm" }))
+                            <div id="ReportForm" style="display:none">
+                            @using (@Html.BeginForm())
                             {
                                 @Html.AntiForgeryToken()
 
@@ -71,6 +72,7 @@
                                 <input type="text" placeholder="Scrie aici motivul raportarii" name="ReportDescription">
                                 <button type="submit" name="SubmitButton" value="Send" class="btn btn-sm btn-danger">Trimite</button>
                             }
+                                </div>
                         </td>
                     </tr>
                 }
