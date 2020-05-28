@@ -100,7 +100,7 @@ namespace IMRL.WhatsInMyFridge.Web.Controllers
 
                 var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("WelcomeMessage");
             }
             return View();
         }
@@ -110,6 +110,10 @@ namespace IMRL.WhatsInMyFridge.Web.Controllers
             var login = HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             //return RedirectToAction("Login");
             return RedirectToAction("Index", "Home");
+        }
+        public IActionResult WelcomeMessage()
+        {
+            return View();
         }
     }
 
