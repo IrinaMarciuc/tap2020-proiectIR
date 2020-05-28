@@ -1,8 +1,14 @@
-# Ce am în frigider?
+# Project: Food Fiesta 
 
-## Descriere
-- Vom crea o aplicație care va permite utilizatorului să caute rețete doar pe baza unor ingrediente introduse
-- Dacă utilizatorul are anumite restricții dietetice(ex.: este vegetarian, vegan, etc.), va putea alege opțiunea sa i se afișeze numai rețete de un anumit tip
-- Aplicația va avea un sistem de autentificare cu utilizatori, iar în funcție de tipul de cont pe care îl are utilizatorul, va avea diferite permisiuni
-- Fiecare utilizator va putea propune o rețetă sau mai multe care sa fie adăugate în baza de date, dar utilizatorii care nu au dreptul de admin vor trebui sa aștepte să le fie aprobată cererea de adăugare
-- Dacă un utilizator va observa că ceva nu este în regulă cu o rețetă(i. e. o rețetă vegana are carne în lista de ingrediente), va putea raporta acest lucru, urmând ca un admin să facă modificările necesare
+## Description
+"Food Fiesta" is a web application that you can use when you don't know what to cook with the ingredients you have at your disposal. Also, anyone can register and share their own recipes, and anyone can report a problem with a recipe.
+
+## Database Structure
+
+[![Database-Strucuture.png](https://i.postimg.cc/PJ7xBBgd/Database-Strucuture.png)](https://postimg.cc/y3FsRr6G)
+
+## Features
+- Anyone, no matter if they have an account or not, can search for a recipe, by introducing a key ingredient in the searchbar, and, if needed, they can apply certain restrictions for the results (i.e. only vegan or vegetarian recipes). Plus, if they find that there is something wrong with a recipe they see, they can report that problem with just the click of a button.
+- If a user decides to register for an account, they have the possibility to contribute with their own recipes, although it would have to be approved by an administrator before it will be visible in the search results.
+- An adminitrator has access to all types of recipes, approved, pending or reported. Thus, they can decide whether a pending recipe should be approved or rejected, if a reported recipe should be deleted, or if it should be added back into the database. Also, an administrator can modify a recipe directly, without the recipe being reported first.
+
