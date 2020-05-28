@@ -18,7 +18,7 @@ namespace IMRL.WhatsInMyFridge.Services
 
     }
     public class PendingRecipeService : IPendingRecipeService {
-        public static string connectionString = "Data Source=DESKTOP-NK0HCAB;Initial Catalog=FridgeContents;Integrated Security=True;MultipleActiveResultSets=True";
+        public static string connectionString = "Data Source=DESKTOP-GAKRRLP;Initial Catalog=FridgeContents;Integrated Security=True;MultipleActiveResultSets=True";
         SqlConnection con = new SqlConnection(connectionString);
         string q;
         string IngredientQuery;
@@ -48,7 +48,7 @@ namespace IMRL.WhatsInMyFridge.Services
                             reader = cmd.ExecuteReader();
                             while (reader.Read())
                             {
-                                RecipeIngredient recipeIngredient = new RecipeIngredient(reader[5].ToString(), Double.Parse(reader[2].ToString()), reader[3].ToString());
+                                RecipeIngredient recipeIngredient = new RecipeIngredient(reader[5].ToString(), reader[2].ToString(), reader[3].ToString());
                                 recipe.RecipeIngredients.Add(recipeIngredient);
 
                             }

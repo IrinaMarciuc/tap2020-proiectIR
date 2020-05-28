@@ -21,12 +21,15 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.SearchRecipe.Controllers
 
         public async Task<IActionResult> SearchRecipe(SearchRecipeViewModel viewModel)
         {
+            if (viewModel.RecipeType == "Fara restrictii")
+            {
+                viewModel.RecipeType = "Normal";
+            }
             var results = await _searchRecipeService.SearchRecipeAsync(viewModel.SearchTerm,viewModel.RecipeType);
-
             return View(new SearchRecipeViewModel
             {
                 SearchTerm = viewModel.SearchTerm,
-                Results = results
+                Results = results,
             });
         }
 
@@ -35,11 +38,29 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.SearchRecipe.Controllers
         public async Task<ActionResult> IndexPost(Guid id)
         {
             string buttonClicked = Request.Form["SubmitButton"];
-            string Description = Request.Form["ReportDescription"];
             if (buttonClicked == "Send")
             {
+                string Description = Request.Form["ReportDescription"];
                 _reportRecipeService.AddReport(id, Description);
 
+            }
+            else if (buttonClicked == "Change")
+            {
+                var result = await _reportRecipeService.ApproveRecipeAsync(id);
+
+            }
+            else if (buttonClicked == "Delete")
+            {
+                var result = await _reportRecipeService.DeleteRecipeAsync(id);
+            }
+            else if (buttonClicked == "ChangeType")
+            {
+                string NewType = Request.Form["RecipeType"];
+                if (NewType == "Fara restrictii")
+                {
+                    NewType = "Normal";
+                }
+                var result = await _reportRecipeService.ChangeTypeAsync(id, NewType);
             }
             return RedirectToAction("Message");
         }

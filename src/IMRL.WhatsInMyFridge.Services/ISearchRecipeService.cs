@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using IMRL.WhatsInMyFridge.Core.Ingredients;
 using IMRL.WhatsInMyFridge.Core.RecipeIngredients;
 using IMRL.WhatsInMyFridge.Core.Recipes.Base;
-using IMRL.WhatsInMyFridge.DataAccess;
-using IMRL.WhatsInMyFridge.DataAccess.Repositories;
 using Microsoft.Data.SqlClient;
 
 namespace IMRL.WhatsInMyFridge.Services
@@ -18,7 +14,7 @@ namespace IMRL.WhatsInMyFridge.Services
 
     public class SearchRecipeService : ISearchRecipeService
     {
-        public static string connectionString = "Data Source=DESKTOP-NK0HCAB;Initial Catalog=FridgeContents;Integrated Security=True;MultipleActiveResultSets=True";
+        public static string connectionString = "Data Source=DESKTOP-GAKRRLP;Initial Catalog=FridgeContents;Integrated Security=True;MultipleActiveResultSets=True";
         SqlConnection con = new SqlConnection(connectionString);
         string q;
         string IngredientQuery;
@@ -53,7 +49,7 @@ namespace IMRL.WhatsInMyFridge.Services
 
                     while (reader.Read())
                     {
-                        Recipe recipe = new Recipe(Guid.Parse(reader[0].ToString()), reader[5].ToString(), reader[8].ToString());
+                        Recipe recipe = new Recipe(Guid.Parse(reader[0].ToString()), reader[5].ToString(), reader[8].ToString(),reader["RecipeType"].ToString());
                         RecipeList.Add(recipe);
                     }
                     reader.Close();
@@ -65,7 +61,7 @@ namespace IMRL.WhatsInMyFridge.Services
                             reader = cmd.ExecuteReader();
                             while (reader.Read())
                             {
-                                RecipeIngredient recipeIngredient = new RecipeIngredient(reader[5].ToString(), Double.Parse(reader[2].ToString()), reader[3].ToString());
+                                RecipeIngredient recipeIngredient = new RecipeIngredient(reader[5].ToString(), reader[2].ToString(), reader[3].ToString());
                                 recipe.RecipeIngredients.Add(recipeIngredient);
 
                             }

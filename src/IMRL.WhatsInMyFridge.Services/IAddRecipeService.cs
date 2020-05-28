@@ -15,14 +15,14 @@ namespace IMRL.WhatsInMyFridge.Services
     public interface IAddRecipeService
     {
       void AddRecipeAsync(string RecipeName, string RecipeStatus, string RecipeType, string Link, List<string> Ingredients,
-          List<Double> Quantities, List<string> UnitsOfMeasurement);
+          List<string> Quantities, List<string> UnitsOfMeasurement);
 
     }
     public class AddRecipeService : IAddRecipeService
     {
         private readonly IDataRepository _dataRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public static string connectionString = "Data Source=DESKTOP-NK0HCAB;Initial Catalog=FridgeContents;Integrated Security=True";
+        public static string connectionString = "Data Source=DESKTOP-GAKRRLP;Initial Catalog=FridgeContents;Integrated Security=True";
         SqlConnection con = new SqlConnection(connectionString);
         string q;
 
@@ -50,7 +50,7 @@ namespace IMRL.WhatsInMyFridge.Services
            // _unitOfWork.Commit();
         }
 
-        public void AddRecipeAsync(string RecipeName, string RecipeStatus, string RecipeType, string Link, List<string> Ingredients, List<double> Quantities, List<string> UnitsOfMeasurement)
+        public void AddRecipeAsync(string RecipeName, string RecipeStatus, string RecipeType, string Link, List<string> Ingredients, List<string> Quantities, List<string> UnitsOfMeasurement)
         {
             con.Open();
             if (con.State == System.Data.ConnectionState.Open) {
@@ -68,7 +68,7 @@ namespace IMRL.WhatsInMyFridge.Services
 
         }
 
-        public void AddRecipeIngredient(Guid RecipeId, Guid IngredientId, Double Quantity, string UnitOfMeasurement)
+        public void AddRecipeIngredient(Guid RecipeId, Guid IngredientId, string Quantity, string UnitOfMeasurement)
         {
             var recipeIngredient = new RecipeIngredient(RecipeId, IngredientId, Quantity, UnitOfMeasurement);
             q = "insert into RecipeIngredients(RecipeId,IngredientId,Quantity,MeasurementUnit)values('" + recipeIngredient.RecipeId + "','" + recipeIngredient.IngredientId + "','" + recipeIngredient.Quantity + "','" + recipeIngredient.UnitOfMeasurement + "')";

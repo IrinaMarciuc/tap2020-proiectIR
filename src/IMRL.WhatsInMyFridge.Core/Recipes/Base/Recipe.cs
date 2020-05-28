@@ -36,11 +36,12 @@ namespace IMRL.WhatsInMyFridge.Core.Recipes.Base
             this.Report = Report;
             RecipeIngredients = new List<RecipeIngredient>();
         }
-        public Recipe(Guid Id, string Name, string Link)
+        public Recipe(Guid Id, string Name, string Link, string RecipeType)
         {
             this.Id = Id;
             this.Name = Name;
             this.Link = Link;
+            this.RecipeType = RecipeType;
             RecipeIngredients = new List<RecipeIngredient>();
         }
     }

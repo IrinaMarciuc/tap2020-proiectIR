@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Adauga reteta";
+    ViewData["Title"] = "Propune o rețetă";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,7 +12,7 @@
         <div class="col-md-3">
             <form asp-controller="AddRecipe" asp-action="AddRecipe" asp-area="AddRecipe" method="post">
                 <div class="form-group" for="RecipeName">
-                    <label for="RecipeName">Numele Retetei: </label>
+                    <label for="RecipeName">Numele Rețetei: </label>
                     <input type="text" name="RecipeName" class="form-control" />
                 </div>
                 <div class="form-group" for="Link">
@@ -22,9 +22,9 @@
                     
                 </div>
                 <div class="form-group" for="RecipeType">
-                    <label for="RecipeType">Tipul Retetei: </label>
+                    <label for="RecipeType">Tipul Rețetei: </label>
                     <select class="form-control" name="RecipeType">
-                        <option value="normal">Normal</option>
+                        <option value="normal">Fără restricții</option>
                         <option value="vegan">Vegan</option>
                         <option value="vegetarian">Vegetarian</option>
                     </select>
@@ -33,7 +33,7 @@
                     <label for="Ingredients">Ingrediente(maxim 15, altfel nimeni nu se oboseste sa citeasca reteta): </label>
                     <div class="form-group" >
                         <input class="form-control" type="text" name="Ingredients[0]" placeholder="Nume ingredient" />
-                        <input class="form-control" type="number" name="Quantities[0]" placeholder="Cantitate" step="0.01" />
+                        <input class="form-control" type="text" name="Quantities[0]" placeholder="Cantitate" step="0.01" />
                         <select class="form-control" name="UnitsOfMeasurement[0]">
                             <option value="kg">Kg</option>
                             <option value="gr">Grame</option>
@@ -43,7 +43,9 @@
                             <option value="lingurite">Lingurite</option>
                             <option value="litri">Litri</option>
                             <option value="ml">Mililitri</option>
-                            <option value="vf">Varf</option>
+                            <option value="bc">Bucata</option>
+                            <option value="buc">Bucati</option>
+                            <option value="praf">Praf</option>
                             <option value="fir">Fir</option>
                             <option value="fire">Fire</option>
                         </select>
@@ -53,9 +55,9 @@
 
                 </div>
                 <div class="form-group">
-                    <input id="AddButton" type="button" value="Adauga inca un ingredient" />
+                    <input id="AddButton" type="button" class="btn btn-outline-dark" style="background-color:#f388d4" value="Adaugă încă un ingredient" />
                 </div>
-                <button type="submit" class="btn btn-primary">Adaugare reteta</button>
+                <button type="submit" class="btn btn-warning btn-outline-dark">Adăugare rețetă</button>
             </form>
         </div>
     </div>
@@ -67,7 +69,7 @@
             var div = $("<div />");
                 var value = "";
                 var IngredientBox = $("<input />").attr("type", "text").attr("placeholder", "Nume ingredient").attr("name", "Ingredients[" + i + "]").attr("class","form-control");
-                var QuantityBox = $("<input />").attr("type", "number").attr("placeholder", "Cantitate").attr("name", "Quantities[" + i + "]").attr("class", "form-control").attr("step","0.01");
+                var QuantityBox = $("<input />").attr("type", "text").attr("placeholder", "Cantitate").attr("name", "Quantities[" + i + "]").attr("class", "form-control").attr("step","0.01");
             var UoMBox = $("<select />").attr("class", "form-control").attr("name", "UnitsOfMeasurement[" + i + "]");
             var opt1 = document.createElement('option');
             opt1.value = "kg";
@@ -102,9 +104,17 @@
             opt8.value = "ml";
             opt8.textContent = "Mililitri";
             UoMBox.append(opt8);
+            var opt13 = document.createElement('option');
+            opt13.value = "bc";
+            opt13.textContent = "Bucata";
+            UoMBox.append(opt13);
+            var opt12 = document.createElement('option');
+            opt12.value = "buc";
+            opt12.textContent = "Bucati";
+            UoMBox.append(opt12);
             var opt9 = document.createElement('option');
-            opt9.value = "varf";
-            opt9.textContent = "Varf";
+            opt9.value = "praf";
+            opt9.textContent = "Praf";
             UoMBox.append(opt9);
             var opt10 = document.createElement('option');
             opt10.value = "fir";

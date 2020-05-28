@@ -1,31 +1,30 @@
 ﻿@{
-    ViewData["Title"] = "Cauta retete";
+    ViewData["Title"] = "Caută rețete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using System.Security.Claims
 @model IMRL.WhatsInMyFridge.Web.Areas.SearchRecipe.Models.SearchRecipeViewModel
 <div class="container">
-    <div class="row">
-        <div class="col-12">
+    <div>
+        <div class="col-4">
             <form asp-controller="SearchRecipe" asp-action="SearchRecipe" asp-area="SearchRecipe" method="get">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Scrie un ingredient: </label>
+                <div>
+                    <div class="form-row">
+                        <label style="margin-right:10px">Scrie un ingredient: </label>
+                        <input type="search" class="form-group rounded" name="SearchTerm" value="@Model.SearchTerm" />
+                    </div>
+                    <div class="form-row">
+                        <label for="RecipeType" style="margin-right:10px">Selectează tipul Rețetei: </label>
+                        <div class="form-group" for="RecipeType">
+                            <select class="rounded" name="RecipeType" value="Tipul retetei">
+                                <option value="normal">Fără restricții</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="vegetarian">Vegetarian</option>
+                            </select>
+                        </div>
                     </div>
                     <div>
-                        <input type="search" class="input-search-box" name="SearchTerm" value="@Model.SearchTerm" />
-                    </div>
-                    <div class="form-group">
-                        <label for="RecipeType">Selecteaza tipul Retetei: </label>
-                    </div>
-                    <div class="form-group" for="RecipeType">
-                        <select class="form-control " name="RecipeType" value="Tipul retetei">
-                            <option value="normal">Normal</option>
-                            <option value="vegan">Vegan</option>
-                            <option value="vegetarian">Vegetarian</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input type="submit" value="Cautare" />
+                        <input type="submit" class="btn btn-warning btn-outline-dark" value="Căutare" />
                     </div>
                 </div>
             </form>
@@ -39,7 +38,24 @@
                 {
                     <tr>
                         <td>
-                            <span>@item.Name</span>
+                            <h3>@item.Name</h3>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (@item.RecipeType == "normal")
+                            {
+                                <span>
+                                    Tipul Rețetei: Fără restricții
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    Tipul Rețetei: @item.RecipeType
+                                </span>
+                            }
                         </td>
 
                     </tr>
@@ -57,33 +73,50 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="@item.Link">Vezi pasii retetei</a>
+                            <a href="@item.Link">Vezi pașii rețetei</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button type="submit" id="ReportToggle" class="btn btn-sm btn-danger">Report</button>
-                            <div id="ReportForm" style="display:none">
-
-                    @using (@Html.BeginForm())
-                                {
-                                    @Html.AntiForgeryToken()
-
-                                    @Html.Hidden("id", item.Id)
-                                    <input type="text" placeholder="Scrie aici motivul raportarii" name="ReportDescription">
-                                    <button type="submit" name="SubmitButton" value="Send" class="btn btn-sm btn-danger">Trimite</button>
-                                }
-                            </div>
-
-                            @using (@Html.BeginForm())
+                            @if (User.IsInRole("Admin"))
                             {
-                                @Html.AntiForgeryToken()
+                                <button type="submit" id="ReportToggle" class="btn btn-sm btn-light">Modifică</button>
+                                <div id="ReportForm" style="display:none;margin-top:10px;">
+                                    @using (@Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
 
-                                @Html.Hidden("id", item.Id)
-                                <input type="text" placeholder="Scrie aici motivul raportarii" name="ReportDescription">
-                                <button type="submit" name="SubmitButton" value="Send" class="btn btn-sm btn-danger">Trimite</button>
-                            }
+                                        @Html.Hidden("id", item.Id)
+                                        <button type="submit" name="SubmitButton" value="Change" class="btn btn-sm btn-success">Totul este în regulă</button>
+                                        <button type="submit" name="SubmitButton" value="Delete" class="btn btn-sm btn-danger">Elimină rețeta din baza de date</button>
+                                        <select class="col-3" name="RecipeType">
+                                            <option value="normal">Fără restricții</option>
+                                            <option value="vegan">Vegan</option>
+                                            <option value="vegetarian">Vegetarian</option>
+                                        </select>
+                                        <button type="submit" name="SubmitButton" value="ChangeType" class="btn btn-sm btn-info">Modifică tipul rețetei</button>
+                                    }
                                 </div>
+
+                            }
+                            else
+                            {
+                                <button type="submit" id="ReportToggle" class="btn btn-sm btn-danger">Reclamă rețeta</button>
+                                <div id="ReportForm" style="display:none;margin-top:10px;">
+
+                                    @using (@Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        @Html.Hidden("id", item.Id)
+                                        <input type="text" style="width:500px;" placeholder="Scrie aici motivul reclamației" name="ReportDescription">
+
+                                        <button type="submit" name="SubmitButton" value="Send" class="btn btn-sm btn-danger">Trimite</button>
+
+                                    }
+                                </div>
+                            }
+
 
                         </td>
                     </tr>

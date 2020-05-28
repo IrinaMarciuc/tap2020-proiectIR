@@ -4,7 +4,7 @@
 }
 
 @model IMRL.WhatsInMyFridge.Web.Areas.Admin.Models.PendingRecipeViewModel
-<h1>Retete in asteptare</h1>
+<h1>Rețete în așteptare</h1>
 <div class="container">
     <div class="row">
         <table class="table">
@@ -13,7 +13,7 @@
                 {
                 <tr>
                     <td>
-                        <p>Nu este nicio reteta in asteptare.</p>
+                        <p>Nu este nicio rețetă în așteptare.</p>
                     </td>
                 </tr>
                 }
@@ -21,13 +21,25 @@
                 {
                     <tr>
                         <td>
-                            <span>@item.Name</span>
+                            <h3>@item.Name</h3>
                         </td>
 
                     </tr>
                     <tr>
                         <td>
-                            <span>Tipul Retetei: @item.RecipeType</span>
+
+                            @if (@item.RecipeType == "Normal")
+                            {
+                                <span>
+                                    Tipul Rețetei: Fără restricții
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    Tipul Rețetei: @item.RecipeType
+                                </span>
+                            }
                         </td>
 
                     </tr>
@@ -45,7 +57,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="@item.Link">Link-ul retetei</a>
+                            <a href="@item.Link">Link-ul rețetei</a>
                         </td>
                     </tr>
                     <tr>

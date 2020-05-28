@@ -24,24 +24,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Despre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="SearchRecipe" asp-controller="SearchRecipe" asp-action="SearchRecipe">Cauta retete</a>
+                            <a class="nav-link text-dark" asp-area="SearchRecipe" asp-controller="SearchRecipe" asp-action="SearchRecipe">Caută rețete</a>
                         </li>
                         @if (User.IsInRole("Admin") || User.IsInRole("User"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="AddRecipe" asp-controller="AddRecipe" asp-action="AddRecipe">Propune o reteta</a>
+                                <a class="nav-link text-dark" asp-area="AddRecipe" asp-controller="AddRecipe" asp-action="AddRecipe">Propune o rețetă</a>
                             </li>
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="PendingRecipe" asp-action="Index">Retete in asteptare</a>
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="PendingRecipe" asp-action="Index">Rețete în așteptare</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="ReportedRecipes" asp-action="FindReportedRecipes">Reclamatii</a>
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="ReportedRecipes" asp-action="FindReportedRecipes">Reclamații</a>
                                 </li>
                             }
                             <li class="nav-item">
-                                <div class="nav-link text-dark">Hello, @User.Identity.Name!</div>
+                                <div class="nav-link text-dark">Salut, @User.Identity.Name!</div>
                             </li>
                             <li class="nav-item">
                                 <form method="post" asp-controller="Account" asp-action="Logout">

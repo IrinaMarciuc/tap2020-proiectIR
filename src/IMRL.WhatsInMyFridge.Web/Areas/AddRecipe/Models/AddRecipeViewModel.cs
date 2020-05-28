@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Models
 {
@@ -11,7 +8,7 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.AddRecipe.Models
         public string Link { get; set; }
         public string RecipeType { get; set; }
         public List<string> Ingredients { get; set; }
-        public List<Double> Quantities { get; set; }
+        public List<string> Quantities { get; set; }
         public List<string> UnitsOfMeasurement { get; set; }
     }
 }

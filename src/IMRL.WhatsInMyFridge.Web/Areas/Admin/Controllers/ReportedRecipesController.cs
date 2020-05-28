@@ -48,6 +48,10 @@ namespace IMRL.WhatsInMyFridge.Web.Areas.Admin.Controllers
             else if (buttonClicked == "ChangeType")
             {
                 string NewType= Request.Form["RecipeType"];
+                if (NewType == "Fara restrictii")
+                {
+                    NewType = "Normal";
+                }
                 var result = await _reportRecipeService.ChangeTypeAsync(id,NewType);
             }
             //Save Record and Redirect

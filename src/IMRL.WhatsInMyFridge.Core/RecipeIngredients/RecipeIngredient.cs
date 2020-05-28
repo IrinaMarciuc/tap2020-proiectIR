@@ -12,17 +12,17 @@ namespace IMRL.WhatsInMyFridge.Core.RecipeIngredients
         public Guid IngredientId { get; set; }
 
         public string UnitOfMeasurement { get; set; }
-        public Double Quantity { get; set; }
+        public string Quantity { get; set; }
         public Guid Id { get; set; }
         public string Ingredient { get; set; }
         public Recipe Recipe { get; set; }
-        public RecipeIngredient(Guid RecipeId, Guid IngredientId, Double Quantity, string UnitOfMeasurement) {
+        public RecipeIngredient(Guid RecipeId, Guid IngredientId, string Quantity, string UnitOfMeasurement) {
             this.RecipeId = RecipeId;
             this.IngredientId = IngredientId;
             this.Quantity = Quantity;
             this.UnitOfMeasurement = UnitOfMeasurement;
         }
-        public RecipeIngredient(string Ingredient,Double Quantity, string UnitOfMeasurement)
+        public RecipeIngredient(string Ingredient,string Quantity, string UnitOfMeasurement)
         {
             this.Ingredient = Ingredient;
             this.Quantity = Quantity;
